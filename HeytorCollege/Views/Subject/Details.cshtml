@@ -1,0 +1,82 @@
+﻿@model HeytorCollege.Models.Subject
+
+@{
+    ViewBag.Title = "Subject Details";
+}
+
+<h2>Subject Details</h2>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.Title)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubjectID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubjectID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            Course
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Course.Title)
+        </dd>
+
+        <dt>
+            Teacher
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Teacher.Name)
+        </dd>
+
+        <dt>
+            Students Count
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Enrollments.Count)
+        </dd>
+
+        <dt>
+            Students
+        </dt>
+
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Student</th>
+                    <th>Grade</th>
+                </tr>
+                @foreach (var item in Model.Enrollments)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Student.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Grade)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SubjectID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

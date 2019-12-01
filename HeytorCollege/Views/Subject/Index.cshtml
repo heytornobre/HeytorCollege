@@ -1,0 +1,57 @@
+﻿@model IEnumerable<HeytorCollege.Models.Subject>
+
+@{
+    ViewBag.Title = "Subjects";
+}
+
+<h2>Subjects</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SubjectID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            Teacher
+        </th>
+        <th>
+            Course
+        </th>
+        <th>
+            Students Count
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubjectID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Teacher.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Course.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Enrollments.Count)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.SubjectID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.SubjectID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.SubjectID })
+        </td>
+    </tr>
+}
+
+</table>

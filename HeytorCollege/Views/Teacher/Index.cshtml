@@ -1,0 +1,88 @@
+﻿@model HeytorCollege.ViewModels.TeacherIndexData
+
+@{
+    ViewBag.Title = "Teachers";
+}
+
+<h2>Teachers</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Birthday
+        </th>
+        <th>
+            Salary
+        </th>
+        @*<th>
+                Subject
+            </th>
+            <th>
+                Course
+            </th>*@
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Teachers)
+    {
+        string selectedRow = "";
+        if (item.ID == ViewBag.TeacherID)
+        {
+            selectedRow = "success";
+        }
+        <tr class="@selectedRow">
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Birthday)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => Model.Subjects.Single(i => i.TeacherID == item.ID).Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Subjects.Single(i => i.TeacherID == item.ID).Course.Title)
+                </td>*@
+            <td>
+                @Html.ActionLink("Select", "Index", new { id = item.ID }) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@if (Model.Enrollments != null)
+{
+    <h3>
+        Students Enrolled with Selected Teacher
+    </h3>
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Grade</th>
+        </tr>
+        @foreach (var item in Model.Enrollments)
+        {
+            <tr>
+                <td>
+                    @item.Student.Name
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grade)
+                </td>
+            </tr>
+        }
+    </table>
+}
