@@ -72,7 +72,7 @@ namespace HeytorCollege.Controllers
                     return RedirectToAction("Index");
                 }
             }
-            catch (DataException ex)
+            catch (DataException)
             {
                 string message = "Unable to save changes. Try again, and if the problem persists see your system administrator.";
                 if (db.Courses.Find(course.CourseID) != null) message = "This ID is already taken, please try a different one!";
